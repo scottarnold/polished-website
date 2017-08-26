@@ -1,0 +1,22 @@
+{
+  "name": "polished-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:styled-components/polished-website.git",
+  "author": " ",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run build:docs",
+    "build:docs": "npm run build:docs:site && npm run build:docs:readme",
+    "prebuild:docs:site": "shx rm -rf docs/*",
+    "build:docs:site": "documentation build src/** -t docs-theme --github -o docs -f html -c ./.documentation.json",
+    "postbuild:docs:site": "shx cp CNAME docs/CNAME && shx cp dist/polished.js docs/assets/",
+    "docs": "pushstate-server docs",
+  },
+  "devDependencies": {
+    "documentation": "4.0.0-beta.18",
+    "polished": "^1.5.0",
+    "pushstate-server": "^3.0.1",
+    "shx": "^0.2.2"
+  }
+}
