@@ -7,16 +7,30 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run build:docs",
-    "build:docs": "npm run build:docs:site && npm run build:docs:readme",
-    "prebuild:docs:site": "shx rm -rf docs/*",
-    "build:docs:site": "documentation build src/** -t docs-theme --github -o docs -f html -c ./.documentation.json",
-    "postbuild:docs:site": "shx cp CNAME docs/CNAME && shx cp dist/polished.js docs/assets/",
-    "docs": "pushstate-server docs",
+    "build:docs": "npm run build:docs:site",
+    "prebuild:docs:site": "shx rm -rf docs/* && shx rm -rf polished && git clone git@github.com:styled-components/polished.git",
+    "build:docs:site": "documentation build polished/src/** -t docs-theme --github -o docs -f html -c ./.documentation.json",
+    "postbuild:docs:site": "shx cp CNAME docs/CNAME",
+    "docs": "pushstate-server docs"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.0",
+    "babel-jest": "^16.0.0",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-external-helpers": "^6.18.0",
+    "babel-plugin-syntax-trailing-function-commas": "^6.22.0",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-env": "^1.5.2",
+    "cz-conventional-changelog": "^1.2.0",
     "documentation": "4.0.0-beta.18",
-    "polished": "^1.5.0",
-    "pushstate-server": "^3.0.1",
+    "github-slugger": "^1.1.1",
+    "highlight.js": "^9.9.0",
+    "pushstate-server": "^2.1.0",
     "shx": "^0.2.2"
   }
 }
